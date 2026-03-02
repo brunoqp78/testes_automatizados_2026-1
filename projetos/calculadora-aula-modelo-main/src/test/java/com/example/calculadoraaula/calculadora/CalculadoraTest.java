@@ -47,7 +47,7 @@ public class CalculadoraTest {
         int resultadoRealObtido = calculadoraTestada.subtrair(entradaNumero1, entradaNumero2);
 
         //Assert
-        Assertions.assertEquals(resultadoEsperado, resultadoRealObtido);
+        Assertions.assertEquals(resultadoEsperado, resultadoRealObtido, "A subtração entre dois números positivos não retornou a resposta esperada!!!!");
     }
 
     @Test
