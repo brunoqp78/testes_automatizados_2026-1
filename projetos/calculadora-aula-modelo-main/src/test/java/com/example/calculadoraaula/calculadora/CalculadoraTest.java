@@ -150,7 +150,7 @@ public class CalculadoraTest {
             calculadoraTestada.dividir(entradaNumero1, entradaNumero2);
         });
 
-        assertEquals("Erro: divisão por zero!!!", e.getMessage());
+        assertEquals(mensagemErroEsperada, e.getMessage());
     }   
     
 
