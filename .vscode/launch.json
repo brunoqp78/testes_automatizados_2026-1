@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "AtividadeA2Application",
+            "request": "launch",
+            "mainClass": "org.iftm.atividadea2.AtividadeA2Application",
+            "projectName": ""
+        },
+        {
+            "type": "java",
             "name": "Main",
             "request": "launch",
             "mainClass": "com.example.calculadoraaula.calculadora.Main",
@@ -14,6 +21,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.example.calculadoraaula.CalculadoraAulaApplication",
             "projectName": "calculadora-aula",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-AtividadeA2Application<atividade-a2>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.iftm.atividadea2.AtividadeA2Application",
+            "projectName": "atividade-a2",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
