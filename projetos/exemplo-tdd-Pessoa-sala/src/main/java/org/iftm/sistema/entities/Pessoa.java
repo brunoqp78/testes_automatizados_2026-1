@@ -26,15 +26,13 @@ public class Pessoa {
     }
 
     public String retornarNomeCompleto() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retornarNomeCompleto'");
+        return this.nome + " " + this.sobrenome;
     }
 
     public String retornarIniciais() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'retornarIniciais'");
+        char siglas[] = {this.nome.charAt(0), this.sobrenome.charAt(0)};
+        return (new String(siglas)).toUpperCase();
     }
-
 
     
 }
