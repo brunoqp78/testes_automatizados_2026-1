@@ -30,8 +30,7 @@ public class Pessoa {
     }
 
     public String retornarIniciais() {
-        char siglas[] = {this.nome.charAt(0), this.sobrenome.charAt(0)};
-        return (new String(siglas)).toUpperCase();
+        return (this.nome.charAt(0) +""+ this.sobrenome.charAt(0)).toUpperCase();
     }
 
     
