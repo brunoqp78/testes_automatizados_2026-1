@@ -11,7 +11,13 @@ class GeradorCracha {
     }
 
     public void gerarPara(Pessoa pessoa) {
-        gerenciadorImpressora.imprimir(pessoa.retornarNomeCompleto(), pessoa.retornarIniciais());
+        if (!gerenciadorImpressora.estaConectado()){
+            throw new IllegalStateException("Impressora OffLine!!!");
+        }
+        int retorno = gerenciadorImpressora.imprimir(pessoa.retornarNomeCompleto(), pessoa.retornarIniciais());
+        if (retorno == 2){
+            throw new IllegalStateException("Impressora apresenta falha mecânica!!!");
+        }
     }
 
 }
