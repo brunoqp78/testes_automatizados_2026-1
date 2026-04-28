@@ -2,6 +2,8 @@
 package org.iftm.sistema.servicies;
 
 import org.iftm.sistema.entities.Pessoa;
+import org.iftm.sistema.servicies.Exceptions.ImpressoraComFalhaMecanica;
+import org.iftm.sistema.servicies.Exceptions.ImpressoraOfflineException;
 
 class GeradorCracha {
     private GerenciadorImpressora gerenciadorImpressora;
@@ -12,11 +14,11 @@ class GeradorCracha {
 
     public void gerarPara(Pessoa pessoa) {
         if (!gerenciadorImpressora.estaConectado()){
-            throw new IllegalStateException("Impressora OffLine!!!");
+            throw new ImpressoraOfflineException();
         }
         int retorno = gerenciadorImpressora.imprimir(pessoa.retornarNomeCompleto(), pessoa.retornarIniciais());
-        if (retorno == 2){
-            throw new IllegalStateException("Impressora apresenta falha mecânica!!!");
+        if (retorno == ImpressoraOfflineException.STATUSFALHAMECANICA){
+            throw new ImpressoraComFalhaMecanica();
         }
     }
 
