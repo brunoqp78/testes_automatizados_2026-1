@@ -10,41 +10,29 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.iftm.gerenciadorveterinarios.entities.Veterinario;
 import org.iftm.gerenciadorveterinarios.repositories.VeterinarioRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@ExtendWith(MockitoExtension.class)
-@Transactional
-public class VeterinarioServiceTest {
+@SpringBootTest
+public class VeterinarioServiceITest {
 
-    // cria a simulação/mock de todas as classes que serão injetadas na classe a ser testada
-    @Mock
-    private VeterinarioRepository repositorio;
-
-    //classe a ser testada que receberá todas as injeções de classes mock
-    @InjectMocks
+    //fazer injeção de dependencia da classe original
+    @Autowired
     private VeterinarioService service;
 
     /*Validar se a busca por veterinario retorna o veterinário correto e o nome com no máximo 10 caracteres. */
     @Test
     public void testarBuscarVeterinarioPorIDExistenteRetornaVeterinarioComTruncado(){
         //arrange
-        String nomeExistente = "Erica Queiroz Pinto";
         int tamanhoEsperadoNome = 10;        
         String nomeEsperado = "Erica Quei";
-        Veterinario veterinarioEsperado = new Veterinario(null, nomeExistente, "", "", BigDecimal.valueOf(0));
         int idExistente = 2;
-
-        //configurar o mock - criando o cenário de teste
-        when(repositorio.findById(Mockito.anyInt())).thenReturn(Optional.of(veterinarioEsperado));
 
         //act
         Optional<Veterinario> resposta = service.buscaVeterinariosPeloId(idExistente);   
@@ -54,8 +42,6 @@ public class VeterinarioServiceTest {
         assertTrue(resposta.isPresent());
         assertEquals(tamanhoEsperadoNome, veterinarioRetornado.getNome().length());
         assertEquals(nomeEsperado, veterinarioRetornado.getNome());
-
-        verify(repositorio).findById(Mockito.anyInt());
     }
 
     @Test
@@ -71,9 +57,6 @@ public class VeterinarioServiceTest {
         service.apagar(veterinarioExcluido);
         }
         );
-
-        verify(repositorio).delete(veterinarioExcluido);
-
     }
 
 
